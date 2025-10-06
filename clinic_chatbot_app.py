@@ -39,7 +39,7 @@ clinic_data = {
 }
 
 training_data = [
-    {"intent": "doctor_availability", "patterns": ["When is Dr. Mehta available?", "Doctor timings", "Availability of doctors", "Can I see Dr. Sharma?", "Doctor schedule"]},
+    {"intent": "doctor_availability", "patterns": [" is doctor available","When is Dr. Mehta available?", "Doctor timings", "Availability of doctors", "Can I see Dr. Sharma?", "Doctor schedule"]},
     {"intent": "doctor_qualification", "patterns": ["Doctor qualification", "Doctor education", "Doctor specialisation", "Which doctor is a specialist?", "Doctors degrees"]},
     {"intent": "appointment", "patterns": ["I want to book an appointment", "Schedule appointment", "How to book a slot?", "Can I visit?", "Book a consultation"]},
     {"intent": "fees", "patterns": ["What is the consultation fee?", "How much does it cost?", "Price for visit","what is the fee", "Fee details"]},
@@ -124,5 +124,6 @@ for speaker, message in st.session_state.history:
         st.markdown(f"**You:** {message}")
     else:
         st.markdown(f"**Bot:** {message}")
+
 
 
