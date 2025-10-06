@@ -42,10 +42,10 @@ training_data = [
     {"intent": "doctor_availability", "patterns": ["When is Dr. Mehta available?", "Doctor timings", "Availability of doctors", "Can I see Dr. Sharma?", "Doctor schedule"]},
     {"intent": "doctor_qualification", "patterns": ["Doctor qualification", "Doctor education", "Doctor specialisation", "Which doctor is a specialist?", "Doctors degrees"]},
     {"intent": "appointment", "patterns": ["I want to book an appointment", "Schedule appointment", "How to book a slot?", "Can I visit?", "Book a consultation"]},
-    {"intent": "fees", "patterns": ["What is the consultation fee?", "How much does it cost?", "Price for visit", "Fee details"]},
+    {"intent": "fees", "patterns": ["What is the consultation fee?", "How much does it cost?", "Price for visit","what is the fee", "Fee details"]},
     {"intent": "contact", "patterns": ["Contact number", "Phone number", "Call clinic", "How to reach you?"]},
     {"intent": "location", "patterns": ["Where is the clinic?", "Clinic address", "Location details", "How to reach clinic?"]},
-    {"intent": "timing", "patterns": ["When is clinic open?", "Open timings", "Closing time", "Working hours"]},
+    {"intent": "timing", "patterns": ["When will clinic open?", "timings of clinic","Open timings", "Closing time", "Working hours"]},
     {"intent": "sunday", "patterns": ["Are you open on Sunday?", "Sunday timings", "Open on Sunday?"]}
 ]
 
@@ -124,4 +124,5 @@ for speaker, message in st.session_state.history:
         st.markdown(f"**You:** {message}")
     else:
         st.markdown(f"**Bot:** {message}")
+
 
