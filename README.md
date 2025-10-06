@@ -1,2 +1,19 @@
-# AI-Clinic-Chatbot
-It is a simple AI chatbox which focusses on answering some basics questions of a patient before visiting any clinics or hospitals.
+# 🏥 AI Clinic Chatbot
+
+An intelligent chatbot built using **Streamlit** and **Natural Language Processing (NLP)** that assists users with clinic-related queries.
+
+---
+
+## 🚀 Features
+- Understands common clinic and health queries
+- Simple Streamlit web interface
+- Uses NLTK & Scikit-learn for text analysis
+- Easy to customize and extend
+
+---
+
+## 🧩 Requirements
+Install all required Python packages:
+```bash
+pip install -r requirements.txt
+
