@@ -1,5 +1,8 @@
 import streamlit as st
 import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
@@ -121,3 +124,4 @@ for speaker, message in st.session_state.history:
         st.markdown(f"**You:** {message}")
     else:
         st.markdown(f"**Bot:** {message}")
+
