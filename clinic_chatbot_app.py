@@ -110,13 +110,32 @@ def send_message():
     max_prob = max(probs)
     intent = clf.classes_[probs.argmax()]
 
-    # Confidence threshold
-    threshold = 0.5
+    # Confidence threshold (less strict now)
+    threshold = 0.3
 
-    if max_prob < threshold:
+    # Keyword-based fallback (helps with single-word queries)
+    keywords = {
+        "timing": ["time", "timing", "open", "close", "hour"],
+        "fees": ["fee", "cost", "price", "charge"],
+        "appointment": ["book", "appointment", "visit", "schedule"],
+        "contact": ["contact", "call", "phone", "number"],
+        "doctor_availability": ["doctor", "available", "availability", "mehta", "sharma"],
+        "location": ["where", "address", "location", "map"],
+        "sunday": ["sunday", "holiday"]
+    }
+
+    matched_intent = None
+    for intent_key, kw_list in keywords.items():
+        if any(word in processed_input for word in kw_list):
+            matched_intent = intent_key
+            break
+
+    # Decision logic
+    if max_prob < threshold and not matched_intent:
         bot_response = "Sorry, I didn’t understand that. Please try asking differently."
     else:
-        bot_response = clinic_data.get(intent, "Sorry, I didn’t understand that. Please try asking differently.")
+        final_intent = matched_intent if matched_intent else intent
+        bot_response = clinic_data.get(final_intent, "Sorry, I didn’t understand that. Please try asking differently.")
 
     # Update chat history
     st.session_state.history.append(("You", msg))
