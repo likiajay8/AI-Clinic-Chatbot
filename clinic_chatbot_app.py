@@ -39,7 +39,7 @@ clinic_data = {
 }
 
 training_data = [
-    {"intent": "doctor_availability", "patterns": [" is doctor available","When is Dr. Mehta available?", "Doctor timings", "Availability of doctors", "Can I see Dr. Sharma?", "Doctor schedule"]},
+    {"intent": "doctor_availability", "patterns": ["is doctor available","When is Dr. Mehta available?", "Doctor timings", "Availability of doctors", "Can I see Dr. Sharma?", "Doctor schedule"]},
     {"intent": "doctor_qualification", "patterns": ["Doctor qualification", "Doctor education", "Doctor specialisation", "Which doctor is a specialist?", "Doctors degrees"]},
     {"intent": "appointment", "patterns": ["I want to book an appointment", "Schedule appointment", "How to book a slot?", "Can I visit?", "Book a consultation"]},
     {"intent": "fees", "patterns": ["What is the consultation fee?", "How much does it cost?", "Price for visit","what is the fee", "Fee details"]},
@@ -83,38 +83,51 @@ clf.fit(X, y)
 # Streamlit UI
 # ---------------------
 st.set_page_config(page_title="Clinic Chatbot", page_icon="🤖")
-st.title("🤖 Smart Clinic Chatbot")
+st.title("🤖 Clinic support Chatbot")
 st.write("Ask me anything about the clinic: timings, doctor availability, fees, appointments, and more!")
 
 # Initialize chat history
 if 'history' not in st.session_state:
     st.session_state.history = []
 
-# Ensure the text input key exists in session_state
+# Ensure user input key exists
 if 'user_input' not in st.session_state:
     st.session_state.user_input = ""
 
+# ---------------------
 # Callback function for the Send button
+# ---------------------
 def send_message():
-    # This callback runs in Streamlit's safe callback context,
-    # so modifying st.session_state here is allowed.
     msg = st.session_state.get('user_input', '').strip()
     if not msg:
         return
 
     processed_input = preprocess(msg)
     vect_input = vectorizer.transform([processed_input])
-    intent = clf.predict(vect_input)[0]
-    bot_response = clinic_data.get(intent, "Sorry, I didn’t understand that. Please try asking differently.")
 
-    # Update history and clear the input
+    # Get prediction probabilities
+    probs = clf.predict_proba(vect_input)[0]
+    max_prob = max(probs)
+    intent = clf.classes_[probs.argmax()]
+
+    # Confidence threshold
+    threshold = 0.5
+
+    if max_prob < threshold:
+        bot_response = "Sorry, I didn’t understand that. Please try asking differently."
+    else:
+        bot_response = clinic_data.get(intent, "Sorry, I didn’t understand that. Please try asking differently.")
+
+    # Update chat history
     st.session_state.history.append(("You", msg))
     st.session_state.history.append(("Bot", bot_response))
 
-    # Clear the input field by setting the session_state value (safe inside callback)
+    # Clear input field
     st.session_state['user_input'] = ""
 
-# Render the input box (controlled by session_state) and a Send button that calls the callback
+# ---------------------
+# Chat Input & Display
+# ---------------------
 st.text_input("You:", key="user_input", placeholder="Type your question here...")
 st.button("Send", on_click=send_message)
 
@@ -124,6 +137,3 @@ for speaker, message in st.session_state.history:
         st.markdown(f"**You:** {message}")
     else:
         st.markdown(f"**Bot:** {message}")
-
-
-
