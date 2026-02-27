@@ -1,11 +1,9 @@
 🏥 AI Clinic Chatbot
-
 An intelligent clinic support chatbot built with Streamlit and NLP that helps users quickly get information about clinic services such as timings, doctor availability, fees, and appointments.
 
 🔗 Live Demo: https://ai-clinic-chatbot-d4ywcdburgxhbkyrgssyym.streamlit.app/
 
 🚀 Features
-
 💬 Understands common clinic queries using NLP
 
 🧠 Intent classification using Logistic Regression
@@ -19,7 +17,6 @@ An intelligent clinic support chatbot built with Streamlit and NLP that helps us
 🔁 Chat history support
 
 🛠 Tech Stack
-
 Python
 
 Streamlit
@@ -31,7 +28,6 @@ Scikit-learn
 Machine Learning (Logistic Regression)
 
 ⚙️ How It Works
-
 User enters a query in the chat interface
 
 Text is preprocessed (lowercasing, punctuation removal, lemmatization)
@@ -43,7 +39,6 @@ Logistic Regression model predicts the intent
 Bot returns the most relevant clinic response
 
 🧠 Supported Intents
-
 Clinic timings
 
 Sunday availability
@@ -66,6 +61,7 @@ ai-clinic-chatbot/
 ├── app.py                # Main Streamlit application
 ├── requirements.txt      # Dependencies
 └── README.md             # Project documentation
+
 ▶️ Run Locally
 # Clone the repository
 git clone https://github.com/your-username/ai-clinic-chatbot.git
@@ -78,13 +74,12 @@ pip install -r requirements.txt
 
 # Run the app
 streamlit run app.py
-📸 Demo
 
+📸 Demo
 You can try the chatbot live here:
 👉 https://ai-clinic-chatbot-d4ywcdburgxhbkyrgssyym.streamlit.app/
 
 🎯 Use Cases
-
 Clinic websites for quick patient assistance
 
 Healthcare information kiosks
@@ -94,7 +89,6 @@ Customer support automation
 NLP learning project
 
 🔮 Future Improvements
-
 Add more medical FAQs
 
 Integrate real database for appointments
