@@ -63,7 +63,8 @@ Clinic location
 📂 Project Structure
 
 ai-clinic-chatbot/
-│
+
+
 ├── app.py                # Main Streamlit application
 ├── requirements.txt      # Dependencies
 └── README.md             # Project documentation
